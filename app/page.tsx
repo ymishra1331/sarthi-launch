@@ -455,7 +455,7 @@ export default function Home() {
                   transition={{ duration: 1, repeat: Infinity, repeatDelay: 1 }}
                   className="inline-block"
                 >
-                  <div className="text-6xl sm:text-7xl md:text-8xl mb-6">🎉</div>
+                  <div className="text-6xl sm:text-6xl md:text-7xl mb-6 pt-6">🎉</div>
                 </motion.div>
 
                 {/* Launch Complete Heading */}
@@ -463,7 +463,7 @@ export default function Home() {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.2 }}
-                  className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6"
+                  className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl font-bold text-gray-900 mb-6"
                 >
                   SarthiTrans App is Officially Launched
                 </motion.h2>
