@@ -1,0 +1,7 @@
+<svg width="400" height="120" viewBox="0 0 400 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <text x="200" y="70" font-family="Arial, sans-serif" font-size="48" font-weight="bold" fill="white" text-anchor="middle">SarthiTrans</text>
+  <line x1="50" y1="85" x2="350" y2="85" stroke="white" stroke-width="3"/>
+  <circle cx="100" cy="40" r="8" fill="#3B82F6"/>
+  <circle cx="300" cy="40" r="8" fill="#3B82F6"/>
+  <path d="M 100 40 L 300 40" stroke="#3B82F6" stroke-width="2" stroke-dasharray="5,5"/>
+</svg>
