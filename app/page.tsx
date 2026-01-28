@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
 
 // Configurable countdown duration in seconds (2 minutes = 120 seconds)
-const COUNTDOWN_DURATION = 60
+const COUNTDOWN_DURATION = 30
 
 
 interface CountdownTime {
@@ -43,11 +43,19 @@ interface BurstParticle {
 }
 
 export default function Home() {
-  const [timeLeft, setTimeLeft] = useState<CountdownTime>({ minutes: 0, seconds: 0 })
+  // Initialize with the countdown duration
+  const initialMinutes = Math.floor(COUNTDOWN_DURATION / 60)
+  const initialSeconds = COUNTDOWN_DURATION % 60
+  const [timeLeft, setTimeLeft] = useState<CountdownTime>({ minutes: initialMinutes, seconds: initialSeconds })
   const [isComplete, setIsComplete] = useState(false)
   const [hasStarted, setHasStarted] = useState(false)
   const [particles, setParticles] = useState<Particle[]>([])
   const [bursts, setBursts] = useState<FirecrackerBurst[]>([])
+
+  // Function to start the timer
+  const startTimer = () => {
+    setHasStarted(true)
+  }
 
   // Generate firecracker particles and bursts only after timer completes
   useEffect(() => {
@@ -136,9 +144,10 @@ export default function Home() {
   }, [isComplete])
 
   useEffect(() => {
-    // Initialize countdown
+    // Only start countdown when hasStarted is true
+    if (!hasStarted) return
+
     let totalSeconds = COUNTDOWN_DURATION
-    setHasStarted(true)
 
     const interval = setInterval(() => {
       const minutes = Math.floor(totalSeconds / 60)
@@ -188,7 +197,7 @@ export default function Home() {
     }, 1000)
 
     return () => clearInterval(interval)
-  }, [])
+  }, [hasStarted])
 
   // App Preview Carousel Logic
   const [currentScreen, setCurrentScreen] = useState(0)
@@ -338,7 +347,7 @@ export default function Home() {
             className="flex-shrink-0"
           >
             <Image
-              src={isComplete ? "/sarthi-logo.png" : "/logo.png"}
+              src={isComplete ? "/sarthi-logo.png" : "/white-icon-sarthi.png"}
               alt="Client Company Logo"
               width={120}
               height={40}
@@ -395,13 +404,14 @@ export default function Home() {
                 </motion.p>
 
                 {/* Countdown Timer */}
-                {hasStarted && (
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 0.6, duration: 0.5 }}
-                    className="flex items-center justify-center gap-4 sm:gap-6 mb-8"
-                  >
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.6, duration: 0.5 }}
+                  className="flex flex-col items-center justify-center gap-6 mb-8"
+                >
+                  {/* Timer Display */}
+                  <div className="flex items-center justify-center gap-4 sm:gap-6">
                     <motion.div
                       initial={{ scale: 1.2, opacity: 0 }}
                       animate={{ scale: 1, opacity: 1 }}
@@ -427,8 +437,20 @@ export default function Home() {
                       </div>
                       <div className="text-sm sm:text-base text-blue-100 mt-2">SEC</div>
                     </motion.div>
-                  </motion.div>
-                )}
+                  </div>
+
+                  {/* Start Timer Button - Only show when timer hasn't started */}
+                  {!hasStarted && (
+                    <motion.button
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      onClick={startTimer}
+                      className="px-10 mt-6 py-4 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white rounded-full font-bold text-xl transition-all shadow-lg hover:shadow-xl"
+                    >
+                      🚀 Click to Launch
+                    </motion.button>
+                  )}
+                </motion.div>
 
                 {/* Countdown Text */}
                 <motion.p
@@ -437,7 +459,7 @@ export default function Home() {
                   transition={{ delay: 0.8, duration: 0.5 }}
                   className="text-lg sm:text-xl text-gray-600"
                 >
-                  Get ready to move logistics at the speed of trust
+                  {hasStarted ? 'Get ready to move logistics at the speed of trust' : 'Click the button to start the countdown!'}
                 </motion.p>
               </motion.div>
             ) : (
@@ -511,16 +533,16 @@ export default function Home() {
                   </div>
 
                   {/* Bottom Row - Coming Soon Button */}
-                 <motion.a
-                      href="https://play.google.com/store/apps/details?id=com.sarthitrans.sarthitrans"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      className="px-8 py-4 bg-black hover:bg-gray-600 text-white rounded-lg font-semibold text-lg transition-colors shadow-lg text-center"
-                    >
-                     Explore application now
-                    </motion.a>
+                  <motion.a
+                    href="https://play.google.com/store/apps/details?id=com.sarthitrans.sarthitrans"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="px-8 py-4 bg-black hover:bg-gray-600 text-white rounded-lg font-semibold text-lg transition-colors shadow-lg text-center"
+                  >
+                    Explore application now
+                  </motion.a>
                 </motion.div>
               </motion.div>
             )}
@@ -637,7 +659,7 @@ export default function Home() {
             </div>
           </motion.div>
 
-          
+
           <motion.a
             // href="https://workdrive.zohoexternal.com/file/nf47wb2dc1c3293a34612843ae47dabc6e6da"
             href="https://play.google.com/store/apps/details?id=com.sarthitrans.sarthitrans"
