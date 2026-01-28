@@ -539,7 +539,7 @@ export default function Home() {
                     rel="noopener noreferrer"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className="px-8 py-4 bg-black hover:bg-gray-600 text-white rounded-lg font-semibold text-lg transition-colors shadow-lg text-center"
+                    className="px-8 mt-4 py-4 bg-black hover:bg-gray-600 text-white rounded-lg font-semibold text-lg transition-colors shadow-lg text-center"
                   >
                     Explore application now
                   </motion.a>
