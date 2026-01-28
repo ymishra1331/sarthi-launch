@@ -11,6 +11,7 @@ const COUNTDOWN_DURATION = 31
 interface CountdownTime {
   minutes: number
   seconds: number
+
 }
 
 interface Particle {
@@ -163,7 +164,8 @@ export default function Home() {
         const firecrackerColors = ['#FF6B6B', '#FF0000', '#FFE66D', '#FFD700', '#FF8B94', '#FF4500', '#FFA500', '#FFD93D', '#FF6347', '#FF1493']
         const newBursts: FirecrackerBurst[] = []
 
-        for (let i = 0; i < 15; i++) {
+        // Initial burst: 10 is a safe limit for smooth performance
+        for (let i = 0; i < 10; i++) {
           const x = 15 + Math.random() * 70
           const y = 20 + Math.random() * 60
           const particleCount = 18 + Math.floor(Math.random() * 10)
@@ -203,7 +205,7 @@ export default function Home() {
   const [currentScreen, setCurrentScreen] = useState(0)
   const appScreens = [
     "/Animation1.png",
-    "/Animation2.png", // Placeholder: Replace with your second screenshot
+    "/Animation2.png", // Placeholder: Replace with your second screenshot 
     "/Animation3.png"  // Placeholder: Replace with your third screenshot
   ]
 
@@ -234,7 +236,7 @@ export default function Home() {
                 width: `${particle.size}px`,
                 height: `${particle.size}px`,
                 backgroundColor: particle.color,
-                boxShadow: `0 0 ${particle.size * 2}px ${particle.color}`,
+                willChange: 'transform, opacity',
               }}
               initial={{
                 y: -10,
@@ -291,7 +293,8 @@ export default function Home() {
                       width: `${particle.size}px`,
                       height: `${particle.size}px`,
                       backgroundColor: particle.color,
-                      boxShadow: `0 0 ${particle.size * 4}px ${particle.color}, 0 0 ${particle.size * 8}px ${particle.color}`,
+                      // Removed expensive box-shadow for performance
+                      willChange: 'transform, opacity',
                     }}
                     initial={{
                       x: 0,
