@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
 
 // Configurable countdown duration in seconds (2 minutes = 120 seconds)
-const COUNTDOWN_DURATION = 30
+const COUNTDOWN_DURATION = 31
 
 
 interface CountdownTime {
