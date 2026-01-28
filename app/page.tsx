@@ -437,7 +437,7 @@ export default function Home() {
                   transition={{ delay: 0.8, duration: 0.5 }}
                   className="text-lg sm:text-xl text-gray-600"
                 >
-                  The official launch begins shortly
+                  Get ready to move logistics at the speed of trust
                 </motion.p>
               </motion.div>
             ) : (
@@ -463,7 +463,7 @@ export default function Home() {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.2 }}
-                  className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl font-bold text-gray-900 mb-6"
+                  className="text-3xl sm:text-4xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6"
                 >
                   SarthiTrans App is Officially Launched
                 </motion.h2>
@@ -475,7 +475,7 @@ export default function Home() {
                   transition={{ delay: 0.4 }}
                   className="text-lg sm:text-xl md:text-2xl text-gray-700 max-w-3xl mx-auto mb-12 leading-relaxed"
                 >
-                  The application is currently undergoing final Google Play Store review and telecom compliance for SMS services.
+                  The Beta Version of SarthiTrans is now live on Google Play Store for real users testing
                 </motion.p>
 
                 {/* Action Buttons */}
@@ -511,12 +511,16 @@ export default function Home() {
                   </div>
 
                   {/* Bottom Row - Coming Soon Button */}
-                  <button
-                    disabled
-                    className="px-8 py-4 bg-gray-300 text-gray-500 rounded-lg font-semibold text-lg cursor-not-allowed opacity-60"
-                  >
-                    Coming Soon on Google Play
-                  </button>
+                 <motion.a
+                      href="https://play.google.com/store/apps/details?id=com.sarthitrans.sarthitrans"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="px-8 py-4 bg-black hover:bg-gray-600 text-white rounded-lg font-semibold text-lg transition-colors shadow-lg text-center"
+                    >
+                     Explore application now
+                    </motion.a>
                 </motion.div>
               </motion.div>
             )}
@@ -659,7 +663,7 @@ export default function Home() {
             SarthiTrans Logistics
           </h3>
           <p className="text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
-            Play Store release will be available shortly after final compliance approval.
+            The final, searchable version of the app will be available shortly after final compliance approval.
           </p>
         </div>
       </footer>
